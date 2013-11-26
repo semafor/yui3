@@ -302,7 +302,7 @@ YUI.Env.parseUA = function(subUA) {
             o.mobile = 'gecko';
         }
         // Modern WebKit browsers are at least X-Grade
-        m = ua.match(/AppleWebKit\/([^\s]*)/);
+        m = ua.match(/WebKit\/([^\s]*)|AppleWebKit\/([^\s]*)/);
         if (m && m[1]) {
             o.webkit = numberify(m[1]);
             o.safari = o.webkit;
@@ -365,6 +365,12 @@ YUI.Env.parseUA = function(subUA) {
                     if (/Accelerated=true/.test(ua)) {
                         o.accel = true;
                     }
+                }
+                if (/Ubuntu/.test(ua)) {
+                    if (/ Mobile/.test(ua)) {
+                        o.mobile = 'Ubuntu';
+                    }
+                    o.os = 'linux';
                 }
             }
 
